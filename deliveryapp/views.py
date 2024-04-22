@@ -8,3 +8,7 @@ from rest_framework.response import Response
 @api_view()
 def delivery(request):
     return Response({"message":"this is delivery list"})
+
+@api_view()
+def delivery2(request):
+    return Response({"message":"this is delivery list"})

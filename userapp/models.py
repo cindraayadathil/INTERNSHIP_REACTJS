@@ -5,6 +5,7 @@ class Education(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
         return self.name
+
     
 class Profile(models.Model):
     education = models.ManyToManyField(Education)
@@ -18,7 +19,6 @@ class Profile(models.Model):
 
 class Category(models.Model):
     name=models.CharField(max_length=100)
-
     def __str__(self):
         return self.name
 

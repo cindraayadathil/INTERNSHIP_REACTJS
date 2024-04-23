@@ -21,6 +21,12 @@ class Sizecategory(models.Model):
         return self.size
 
 class ProductVariant(models.Model):
+#    SIZE=(
+#     ('S','S'),
+#     ('L','L'),
+#     ('XL','XL')
+#    )
+#    csize=models.CharField(max_length=100,choices=SIZE,null=True,blank=True) THIS  OPTION IS GIVEN BY THE DEVELOPER AND NOT BY THE ADMIN
    product = models.ForeignKey(Productcloth,on_delete=models.CASCADE,null=True,blank=True)
    csize = models.ForeignKey(Sizecategory,on_delete=models.CASCADE,null=True,blank=True)
    actualprice=models.IntegerField()

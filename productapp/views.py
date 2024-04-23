@@ -38,15 +38,18 @@ class CategoryWithProduct(APIView):
         
         category_serializer = CategorySerializer(category)
         products = Productcloth.objects.filter(category=category)
-        products_serializer = ProductSerializer(products, many=True)
-        product_variants = ProductVariant.objects.filter(product__in=products)
-        variant_serializer = ProductVariantSerializer(product_variants, many=True)
-
+        final_data = [ ]
+        for product in products:
+          products_serializer = ProductSerializer(product)
+          product_variants = ProductVariant.objects.filter(product=product)
+          variant_serializer = ProductVariantSerializer(product_variants, many=True)
+          final_data.append({'product':products_serializer.data,'variant':variant_serializer.data})
+        
         response_data ={
-            'category': category_serializer.data,
-            'products':products_serializer.data,
-             'variants': variant_serializer.data
+                        'category': category_serializer.data,
+                        'products':final_data,
         }
 
         return Response(response_data,status=status.HTTP_200_OK)
 
+  
